@@ -1,0 +1,279 @@
+{
+  "project_info": {
+    "project_number": "624736263244",
+    "firebase_url": "https://onlyforimages-2e293-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "onlyforimages-2e293",
+    "storage_bucket": "onlyforimages-2e293.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624736263244:android:f35b67feec3c58019a28e9",
+        "android_client_info": {
+          "package_name": "com.example.citysandwhichpos20"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624736263244-dqvo0od6pndj7snil5ifl83fkpi600eb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqCK6IMgW2uvmKm4pF7KszXP2fdgT_NSA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624736263244-dqvo0od6pndj7snil5ifl83fkpi600eb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "624736263244-r621cq8apb3mmbetp7jdjk6v55mivkas.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.listFirebasePract"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624736263244:android:639d616de2efd5719a28e9",
+        "android_client_info": {
+          "package_name": "com.example.citysandwhichposapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624736263244-dqvo0od6pndj7snil5ifl83fkpi600eb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqCK6IMgW2uvmKm4pF7KszXP2fdgT_NSA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624736263244-dqvo0od6pndj7snil5ifl83fkpi600eb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "624736263244-r621cq8apb3mmbetp7jdjk6v55mivkas.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.listFirebasePract"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624736263244:android:61ab83f7b94abb8d9a28e9",
+        "android_client_info": {
+          "package_name": "com.example.citysandwich"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624736263244-denbpcd8b5ogvvq3t690gehhg82ehc7h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.citysandwich",
+            "certificate_hash": "c1a8579c55994a14688660b01546d432320adc5e"
+          }
+        },
+        {
+          "client_id": "624736263244-dqvo0od6pndj7snil5ifl83fkpi600eb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqCK6IMgW2uvmKm4pF7KszXP2fdgT_NSA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624736263244-dqvo0od6pndj7snil5ifl83fkpi600eb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "624736263244-r621cq8apb3mmbetp7jdjk6v55mivkas.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.listFirebasePract"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624736263244:android:2bdfda233b27e1129a28e9",
+        "android_client_info": {
+          "package_name": "com.example.cityshopordersresto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624736263244-dqvo0od6pndj7snil5ifl83fkpi600eb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqCK6IMgW2uvmKm4pF7KszXP2fdgT_NSA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624736263244-dqvo0od6pndj7snil5ifl83fkpi600eb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "624736263244-r621cq8apb3mmbetp7jdjk6v55mivkas.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.listFirebasePract"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624736263244:android:d50c45992c0b892a9a28e9",
+        "android_client_info": {
+          "package_name": "com.example.list_firebase_pract"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624736263244-dqvo0od6pndj7snil5ifl83fkpi600eb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqCK6IMgW2uvmKm4pF7KszXP2fdgT_NSA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624736263244-dqvo0od6pndj7snil5ifl83fkpi600eb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "624736263244-r621cq8apb3mmbetp7jdjk6v55mivkas.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.listFirebasePract"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624736263244:android:47a411393cdf27e69a28e9",
+        "android_client_info": {
+          "package_name": "com.example.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624736263244-h4jko1j2nqsoque5f5sekbva6vtd2qm6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.project",
+            "certificate_hash": "c1a8579c55994a14688660b01546d432320adc5e"
+          }
+        },
+        {
+          "client_id": "624736263244-dqvo0od6pndj7snil5ifl83fkpi600eb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqCK6IMgW2uvmKm4pF7KszXP2fdgT_NSA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624736263244-dqvo0od6pndj7snil5ifl83fkpi600eb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "624736263244-r621cq8apb3mmbetp7jdjk6v55mivkas.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.listFirebasePract"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624736263244:android:ea645a815aeea8469a28e9",
+        "android_client_info": {
+          "package_name": "com.example.restaurant_owner_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624736263244-dqvo0od6pndj7snil5ifl83fkpi600eb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqCK6IMgW2uvmKm4pF7KszXP2fdgT_NSA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624736263244-dqvo0od6pndj7snil5ifl83fkpi600eb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "624736263244-r621cq8apb3mmbetp7jdjk6v55mivkas.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.listFirebasePract"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

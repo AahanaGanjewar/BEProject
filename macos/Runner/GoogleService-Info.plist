@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>624736263244-d3av40044faoejths299i1biokpjg0uo.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.624736263244-d3av40044faoejths299i1biokpjg0uo</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>624736263244-denbpcd8b5ogvvq3t690gehhg82ehc7h.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCwxlW6O1KheMcDQErRqg1hdJc43IhqBRo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>624736263244</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.restaurantOwnerApp</string>
+	<key>PROJECT_ID</key>
+	<string>onlyforimages-2e293</string>
+	<key>STORAGE_BUCKET</key>
+	<string>onlyforimages-2e293.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:624736263244:ios:0159ead00ef500a09a28e9</string>
+	<key>DATABASE_URL</key>
+	<string>https://onlyforimages-2e293-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+</dict>
+</plist>
