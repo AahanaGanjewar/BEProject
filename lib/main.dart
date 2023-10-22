@@ -1,6 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:restaurant_owner_app/widget/BestSellerBarChart.dart';
+import 'package:restaurant_owner_app/widget/PieChartScreen.dart';
 import 'package:restaurant_owner_app/widget/SalesChartScreen.dart';
+import 'package:restaurant_owner_app/widget/TodaySale.dart';
+import 'package:restaurant_owner_app/widget/screens/home.dart';
+import 'package:restaurant_owner_app/widget/screens/sales.dart';
 
 import 'firebase_options.dart';
 
@@ -23,7 +28,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SalesChartScreen(), // Use your SalesChartScreen as the main widget
+      home: PieChartScreen(),
+      //BestSellerPieChartScreen(), // Use your SalesChartScreen as the main widget
     );
   }
 }
