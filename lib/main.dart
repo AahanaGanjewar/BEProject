@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: PieChartScreen(),
+      home: HomePage(),
       //BestSellerPieChartScreen(), // Use your SalesChartScreen as the main widget
     );
   }
