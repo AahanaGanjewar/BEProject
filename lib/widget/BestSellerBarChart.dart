@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 class BestSellingProductsBarChart extends StatefulWidget {
@@ -13,6 +14,7 @@ class _BestSellingProductsBarChartState
     extends State<BestSellingProductsBarChart> {
   late List<MapEntry<String, dynamic>> bestSellingProducts;
   late DateTime selectedMonth;
+  
 
   @override
   void initState() {
@@ -58,8 +60,32 @@ class _BestSellingProductsBarChartState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Best Selling Products Bar Chart'),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50), // Adjust the height as needed
+        child: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              color: Colors.orange[300],
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+              ),
+            ),
+          ),
+          title: Text(
+            "Best Sellers",
+            style: GoogleFonts.poppins(
+              textStyle: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                // color: Colors.black,
+              ),
+            ),
+          ),
+          
+        ),
       ),
       body: Center(
         child: bestSellingProducts != null
@@ -71,14 +97,19 @@ class _BestSellingProductsBarChartState
 
   Widget _buildBarChart() {
     return BarChart(
+      
       BarChartData(
+        
         alignment: BarChartAlignment.spaceAround,
         maxY: bestSellingProducts[0].value.toDouble() * 1.2,
         barTouchData: BarTouchData(enabled: false),
         titlesData: FlTitlesData(
+          
             show: true,
             bottomTitles: AxisTitles(
+              
               sideTitles: SideTitles(
+                
                 showTitles: true,
                 // getTextStyles: (value) => const TextStyle(
                 //   color: Colors.black,
@@ -99,6 +130,7 @@ class _BestSellingProductsBarChartState
                 //   return Text(bestSellingProducts[value.toInt()].key);
                 // },
               ),
+            
             ),
             rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
             topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
@@ -122,8 +154,8 @@ class _BestSellingProductsBarChartState
             barRods: [
               BarChartRodData(
                 toY: bestSellingProducts[index].value.toDouble(),
-                color: Colors.blue,
-                width: 16,
+                color: Colors.black,
+                width: 24,
               ),
             ],
             showingTooltipIndicators: [0],

@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:restaurant_owner_app/firebase/firebaseData.dart';
 import 'package:restaurant_owner_app/model/SalesData.dart';
 import 'package:intl/intl.dart';
@@ -45,8 +46,32 @@ class _SalesChartScreenState extends State<SalesChartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Sales Chart'),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50), // Adjust the height as needed
+        child: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              color: Colors.orange[300],
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+              ),
+            ),
+          ),
+          title: Text(
+            "Monthly Graph",
+            style: GoogleFonts.poppins(
+              textStyle: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          
+        ),
       ),
       body: Column(
         children: [
@@ -104,46 +129,60 @@ class _SalesChartScreenState extends State<SalesChartScreen> {
       return date.month == selectedMonth.month &&
           date.year == selectedMonth.year;
     }).toList();
-    return LineChart(
-      LineChartData(
-        titlesData: FlTitlesData(
-            show: true,
-            topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            bottomTitles: AxisTitles(
-              sideTitles: SideTitles(
-                showTitles: true,
-                reservedSize: 30,
-                getTitlesWidget: (value, meta) {
-                  // Convert the value to an integer and use it as an index to fetch the date
-                  final index = value.toInt();
-
-                  // Check if the index is within the bounds of your data
-                  if (index >= 0 && index < salesDataList.length) {
-                    // Assuming your SalesData has a 'date' field of type String
-                    final dateString = salesDataList[index].date;
-                    // Parse the string to a DateTime object
-                    final date = DateTime.parse(dateString);
-                    // Format the date as needed
-                    return Text(DateFormat('MMM dd').format(date));
-                  }
-
-                  return Text(''); // Return an empty string for invalid indices
-                },
-              ),
-            )),
-        // Configure your chart based on salesDataList
-        // Example: Add sales data from salesDataList to spots in LineChartBarData
-        lineBarsData: [
-          LineChartBarData(
-            spots: filteredData.asMap().entries.map((entry) {
-              return FlSpot(entry.key.toDouble(), entry.value.amount);
-            }).toList(),
-            isCurved: true,
-            color: Colors.blue,
+    return Container(
+      height: 600,
+      child: LineChart(
+        LineChartData(
+          gridData: FlGridData(show: false),
+          borderData: FlBorderData(
+          show: true,
+          border: Border.all(
+            color: Colors.grey, // Adjust the border color
+            width: 1, // Adjust the border width
           ),
-        ],
-        // Configure other chart properties as needed
+        ),
+          titlesData: FlTitlesData(
+              show: true,
+              // leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 20, interval: 100)),
+              topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+              rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+              leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+
+              bottomTitles: AxisTitles(
+                sideTitles: SideTitles(
+                  showTitles: true,
+                  reservedSize: 30,
+                  getTitlesWidget: (value, meta) {
+                    // Convert the value to an integer and use it as an index to fetch the date
+                    final index = value.toInt();
+    
+                    // Check if the index is within the bounds of your data
+                    if (index >= 0 && index < salesDataList.length) {
+                      // Assuming your SalesData has a 'date' field of type String
+                      final dateString = salesDataList[index].date;
+                      // Parse the string to a DateTime object
+                      final date = DateTime.parse(dateString);
+                      // Format the date as needed
+                      return Text(DateFormat('dd').format(date));
+                    }
+    
+                    return Text(''); // Return an empty string for invalid indices
+                  },
+                ),
+              )),
+          // Configure your chart based on salesDataList
+          // Example: Add sales data from salesDataList to spots in LineChartBarData
+          lineBarsData: [
+            LineChartBarData(
+              spots: filteredData.asMap().entries.map((entry) {
+                return FlSpot(entry.key.toDouble(), entry.value.amount);
+              }).toList(),
+              isCurved: true,
+              color: Colors.black,
+            ),
+          ],
+          // Configure other chart properties as needed
+        ),
       ),
     );
   }
