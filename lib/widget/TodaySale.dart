@@ -69,7 +69,7 @@ class _TodaysSaleComparisonScreenState
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
-      color: isGrowth ? Colors.lightGreen[50] : Colors.red[50],
+      color: isGrowth ? Colors.white : Colors.white,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

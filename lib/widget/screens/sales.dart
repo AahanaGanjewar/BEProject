@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:restaurant_owner_app/widget/PieChartScreen.dart';
 import 'package:restaurant_owner_app/widget/SalesChartScreen.dart';
 import 'package:restaurant_owner_app/widget/TodaySale.dart';
 import '../BestSellerBarChart.dart';
@@ -27,7 +28,7 @@ class SalesPageState extends State<SalesPage> {
           elevation: 0,
           flexibleSpace: Container(
             decoration: BoxDecoration(
-              color: Colors.orange[300],
+              color: Colors.blue,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(20),
                 bottomRight: Radius.circular(20),
@@ -40,7 +41,7 @@ class SalesPageState extends State<SalesPage> {
               textStyle: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Colors.white,
               ),
             ),
           ),
@@ -55,7 +56,7 @@ class SalesPageState extends State<SalesPage> {
         ),
       ),
       body: Container(
-        decoration: BoxDecoration(color: Colors.orange[50]),
+        decoration: BoxDecoration(color: Colors.white),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -65,7 +66,7 @@ class SalesPageState extends State<SalesPage> {
                   borderRadius: BorderRadius.circular(10),
                   // ignore: prefer_const_constructors
                   side: BorderSide(
-                    color: Colors.red,
+                    color: Colors.blue,
                     width: 2,
                   ),
                 ),
@@ -92,7 +93,9 @@ class SalesPageState extends State<SalesPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
@@ -109,7 +112,7 @@ class SalesPageState extends State<SalesPage> {
                     child: Center(child: BestSellingProductsBarChart()),
                     // child: Padding(
                     //   padding: const EdgeInsets.fromLTRB(0, 0, 0, 50),
-                      
+
                     // ),
                   ),
                 ),
@@ -125,12 +128,7 @@ class SalesPageState extends State<SalesPage> {
                       width: 2,
                     ),
                   ),
-                  child: Center(
-                    child: Text(
-                      "Container 3",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ),
+                  child: Center(child: PieChartScreen()),
                 ),
               ),
             ],

@@ -14,7 +14,6 @@ class _BestSellingProductsBarChartState
     extends State<BestSellingProductsBarChart> {
   late List<MapEntry<String, dynamic>> bestSellingProducts;
   late DateTime selectedMonth;
-  
 
   @override
   void initState() {
@@ -63,11 +62,11 @@ class _BestSellingProductsBarChartState
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50), // Adjust the height as needed
         child: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           elevation: 0,
           flexibleSpace: Container(
             decoration: BoxDecoration(
-              color: Colors.orange[300],
+              color: Colors.blue,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(20),
                 bottomRight: Radius.circular(20),
@@ -84,7 +83,6 @@ class _BestSellingProductsBarChartState
               ),
             ),
           ),
-          
         ),
       ),
       body: Center(
@@ -97,27 +95,23 @@ class _BestSellingProductsBarChartState
 
   Widget _buildBarChart() {
     return BarChart(
-      
       BarChartData(
-        
         alignment: BarChartAlignment.spaceAround,
         maxY: bestSellingProducts[0].value.toDouble() * 1.2,
         barTouchData: BarTouchData(enabled: false),
         titlesData: FlTitlesData(
-          
             show: true,
             bottomTitles: AxisTitles(
-              
               sideTitles: SideTitles(
-                
                 showTitles: true,
+
                 // getTextStyles: (value) => const TextStyle(
                 //   color: Colors.black,
                 //   fontWeight: FontWeight.bold,
                 //   fontSize: 14,
                 // ),
                 // margin: 20,
-              
+
                 getTitlesWidget: (value, meta) {
                   if (value < bestSellingProducts.length) {
                     final words =
@@ -130,7 +124,6 @@ class _BestSellingProductsBarChartState
                 //   return Text(bestSellingProducts[value.toInt()].key);
                 // },
               ),
-            
             ),
             rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
             topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
@@ -154,8 +147,8 @@ class _BestSellingProductsBarChartState
             barRods: [
               BarChartRodData(
                 toY: bestSellingProducts[index].value.toDouble(),
-                color: Colors.black,
-                width: 24,
+                color: Colors.blue,
+                width: 30,
               ),
             ],
             showingTooltipIndicators: [0],

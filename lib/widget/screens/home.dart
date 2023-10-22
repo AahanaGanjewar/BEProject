@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
         children: screens,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.orange[100],
+        backgroundColor: Colors.white,
         currentIndex: _currentIndex,
 
         // onTap: (index) {
@@ -49,10 +49,8 @@ class _HomePageState extends State<HomePage> {
         onTap: (index) => changeTab(index),
         items: [
           BottomNavigationBarItem(
-            
             icon: Icon(Icons.attach_money),
             label: 'Sales',
-            
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.storage),

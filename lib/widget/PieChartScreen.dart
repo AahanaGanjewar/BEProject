@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:intl/intl.dart';
 
 class PieChartScreen extends StatefulWidget {
   @override
@@ -8,72 +9,145 @@ class PieChartScreen extends StatefulWidget {
 }
 
 class _PieChartScreenState extends State<PieChartScreen> {
-  Map<String, dynamic>? salesData;
+  final databaseReference =
+      FirebaseDatabase.instance.reference().child('Category sold');
+
+  Map<String, dynamic> data = {};
+
+  String dropdownValue = 'Daily';
+  String selectedDate = DateTime.now().toString().substring(0, 10);
+
+  void fetchData(String date, String filter) async {
+    var event;
+    if (filter == 'Weekly') {
+      DateTime now = DateTime.now();
+      DateTime startOfWeek = now.subtract(Duration(days: now.weekday - 1));
+      DateTime endOfWeek =
+          now.add(Duration(days: DateTime.daysPerWeek - now.weekday));
+      String formattedStartOfWeek =
+          DateFormat('yyyy-MM-dd').format(startOfWeek);
+      String formattedEndOfWeek = DateFormat('yyyy-MM-dd').format(endOfWeek);
+      event = await databaseReference
+          .orderByKey()
+          .startAt(formattedStartOfWeek)
+          .endAt(formattedEndOfWeek)
+          .once();
+    } else if (filter == 'Monthly') {
+      String firstDayOfMonth =
+          DateFormat('yyyy-MM-01').format(DateTime.parse(date));
+      String lastDayOfMonth = DateFormat('yyyy-MM-')
+          .format(DateTime.parse(date).add(Duration(days: 32)))
+          .substring(0, 8);
+      event = await databaseReference
+          .orderByKey()
+          .startAt(firstDayOfMonth)
+          .endAt(lastDayOfMonth)
+          .once();
+    } else {
+      event = await databaseReference.child(date).once();
+    }
+
+    if (event.snapshot.value != null) {
+      Object? fetchedData = event.snapshot.value;
+      if (fetchedData is Map) {
+        setState(() {
+          data = Map<String, dynamic>.from(fetchedData);
+        });
+      }
+    }
+  }
 
   @override
   void initState() {
     super.initState();
-    _fetchSalesData();
-  }
-
-  Future<void> _fetchSalesData() async {
-    DatabaseReference databaseReference = FirebaseDatabase.instance
-        .reference()
-        .child('Category sold'); // Replace with your actual Firebase path
-
-    DataSnapshot dataSnapshot =
-        await databaseReference.child('2023-10-20').get();
-
-    if (dataSnapshot.value != null) {
-      Map<dynamic, dynamic> data = dataSnapshot.value as Map<dynamic, dynamic>;
-      setState(() {
-        salesData = Map<String, dynamic>.from(data);
-      });
-    }
-  }
-
-  List<PieChartSectionData> generatePieChartSections() {
-    if (salesData == null) {
-      return [];
-    }
-
-    int total =
-        salesData!.values.fold(0, (sum, element) => sum + (element as int));
-
-    return salesData!.entries.map((entry) {
-      double value = (entry.value as int) / total;
-      return PieChartSectionData(
-        value: value,
-        title: '${entry.key} - ${(value * 100).toStringAsFixed(2)}%',
-        color: Color((entry.key.hashCode * 0xFFFFFF).toInt()).withOpacity(1.0),
-        radius: 100,
-      );
-    }).toList();
+    fetchData(selectedDate, dropdownValue);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sales Distribution'),
+        title: Text('Pie Chart'),
       ),
-      body: Center(
-        child: salesData == null
-            ? CircularProgressIndicator()
-            : SizedBox(
-                width: 300,
-                height: 300,
-                child: PieChart(
-                  PieChartData(
-                    sections: generatePieChartSections(),
+      body: Column(
+        children: [
+          DropdownButton<String>(
+            value: dropdownValue,
+            onChanged: (String? newValue) {
+              setState(() {
+                dropdownValue = newValue!;
+                if (newValue == 'Daily') {
+                  selectedDate = DateTime.now().toString().substring(0, 10);
+                } else if (newValue == 'Weekly') {
+                  selectedDate = DateTime.now().toString().substring(0, 10);
+                } else if (newValue == 'Monthly') {
+                  selectedDate = DateTime.now().toString().substring(0, 7);
+                }
+                fetchData(selectedDate, newValue);
+              });
+            },
+            items: <String>['Daily', 'Weekly', 'Monthly']
+                .map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+          ),
+          data.isEmpty
+              ? Center(child: CircularProgressIndicator())
+              : Expanded(
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: PieChart(
+                      PieChartData(
+                        sections: getSections(),
+                        sectionsSpace: 0,
+                        centerSpaceRadius: 50,
+                        //showingLegends: true,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+        ],
       ),
     );
   }
+
+  List<PieChartSectionData> getSections() {
+    List<PieChartSectionData> sections = [];
+    int index = 0;
+    data.forEach((key, value) {
+      if (value != null) {
+        sections.add(
+          PieChartSectionData(
+            value: value is int ? value.toDouble() : 0.0,
+            title: '$key\n$value',
+            color: getColor(index),
+            radius: 100,
+          ),
+        );
+      }
+      index++;
+    });
+    return sections;
+  }
+
+  Color getColor(int index) {
+    List<Color> colors = [
+      Colors.blue,
+      Colors.red,
+      Colors.green,
+      Colors.yellow,
+      Colors.orange,
+      Colors.purple,
+    ];
+    return colors[index % colors.length];
+  }
 }
 
-void main() => runApp(MaterialApp(
-      home: PieChartScreen(),
-    ));
+void main() {
+  runApp(MaterialApp(
+    home: PieChartScreen(),
+  ));
+}

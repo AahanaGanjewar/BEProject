@@ -53,7 +53,7 @@ class _SalesChartScreenState extends State<SalesChartScreen> {
           elevation: 0,
           flexibleSpace: Container(
             decoration: BoxDecoration(
-              color: Colors.orange[300],
+              color: Colors.blue,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(20),
                 bottomRight: Radius.circular(20),
@@ -66,11 +66,10 @@ class _SalesChartScreenState extends State<SalesChartScreen> {
               textStyle: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Colors.white,
               ),
             ),
           ),
-          
         ),
       ),
       body: Column(
@@ -135,19 +134,19 @@ class _SalesChartScreenState extends State<SalesChartScreen> {
         LineChartData(
           gridData: FlGridData(show: false),
           borderData: FlBorderData(
-          show: true,
-          border: Border.all(
-            color: Colors.grey, // Adjust the border color
-            width: 1, // Adjust the border width
+            show: true,
+            border: Border.all(
+              color: Colors.grey, // Adjust the border color
+              width: 1, // Adjust the border width
+            ),
           ),
-        ),
           titlesData: FlTitlesData(
               show: true,
               // leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, reservedSize: 20, interval: 100)),
               topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-              rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+              rightTitles:
+                  AxisTitles(sideTitles: SideTitles(showTitles: false)),
               leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-
               bottomTitles: AxisTitles(
                 sideTitles: SideTitles(
                   showTitles: true,
@@ -155,7 +154,7 @@ class _SalesChartScreenState extends State<SalesChartScreen> {
                   getTitlesWidget: (value, meta) {
                     // Convert the value to an integer and use it as an index to fetch the date
                     final index = value.toInt();
-    
+
                     // Check if the index is within the bounds of your data
                     if (index >= 0 && index < salesDataList.length) {
                       // Assuming your SalesData has a 'date' field of type String
@@ -165,8 +164,9 @@ class _SalesChartScreenState extends State<SalesChartScreen> {
                       // Format the date as needed
                       return Text(DateFormat('dd').format(date));
                     }
-    
-                    return Text(''); // Return an empty string for invalid indices
+
+                    return Text(
+                        ''); // Return an empty string for invalid indices
                   },
                 ),
               )),
@@ -178,7 +178,7 @@ class _SalesChartScreenState extends State<SalesChartScreen> {
                 return FlSpot(entry.key.toDouble(), entry.value.amount);
               }).toList(),
               isCurved: true,
-              color: Colors.black,
+              color: Colors.blue,
             ),
           ],
           // Configure other chart properties as needed
