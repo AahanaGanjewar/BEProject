@@ -129,26 +129,26 @@ class _InventoryPageState extends State<InventoryPage> {
       body: Center(
         child: Column(
           children: <Widget>[
-            Container(
-              // margin: EdgeInsets.all(16),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                elevation: 5,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    'Total Unit: ${totalValue.toStringAsFixed(2)}',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.deepPurple,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            // Container(
+            //   // margin: EdgeInsets.all(16),
+            //   child: Card(
+            //     shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(15.0),
+            //     ),
+            //     elevation: 5,
+            //     child: Padding(
+            //       padding: const EdgeInsets.all(16.0),
+            //       child: Text(
+            //         'Total Unit: ${totalValue.toStringAsFixed(2)}',
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //           fontWeight: FontWeight.bold,
+            //           color: Colors.deepPurple,
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
             Expanded(
               child: inventoryData.isEmpty
                   ? Text("No inventory data available for $selectedDate")

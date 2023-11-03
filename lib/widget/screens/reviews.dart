@@ -32,12 +32,8 @@ class _ReviewScreenState extends State<ReviewScreen> {
     final response = await http
         .get(Uri.parse('http://127.0.0.1:5000/api/percentage_happy_reviews'));
     final data = json.decode(response.body);
-    print(data.toString());
-    print("******************");
     setState(() {
       happyPercentage = data['percentage_happy_reviews'];
-      print(happyPercentage);
-      print("-----------------");
     });
   }
 
@@ -79,9 +75,23 @@ class _ReviewScreenState extends State<ReviewScreen> {
                           builder: (context) => HappyReviewsScreen()),
                     );
                   },
-                  child: Icon(
-                    Icons.sentiment_satisfied,
-                    size: 100,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.white.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Image.asset(
+                      'assets/images/good.png', // Replace with your asset image path
+                      width: 100,
+                      height: 100,
+                    ),
                   ),
                 ),
                 GestureDetector(
@@ -92,21 +102,53 @@ class _ReviewScreenState extends State<ReviewScreen> {
                           builder: (context) => NotHappyReviewsScreen()),
                     );
                   },
-                  child: Icon(
-                    Icons.sentiment_very_dissatisfied,
-                    size: 100,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.white.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Image.asset(
+                      'assets/images/bad.png', // Replace with your asset image path
+                      width: 100,
+                      height: 100,
+                    ),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 20),
-            Text(
-              'Happy Reviews: ${happyPercentage.toStringAsFixed(2)}%',
-              style: TextStyle(fontSize: 20),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  'Happy Reviews',
+                  style: TextStyle(fontSize: 20),
+                ),
+                Text(
+                  'Not Happy Reviews',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ],
             ),
-            Text(
-              'Not Happy Reviews: ${notHappyPercentage.toStringAsFixed(2)}%',
-              style: TextStyle(fontSize: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  '${happyPercentage.toStringAsFixed(2)}%',
+                  style: TextStyle(fontSize: 20),
+                ),
+                Text(
+                  '${notHappyPercentage.toStringAsFixed(2)}%',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ],
             ),
           ],
         ),
@@ -130,8 +172,26 @@ class HappyReviewsScreen extends StatelessWidget {
             return ListView.builder(
               itemCount: data['happy_reviews'].length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(data['happy_reviews'][index]),
+                return Container(
+                  margin: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.grey[200],
+                    border: Border.all(
+                      color: Colors.black,
+                      width: 2,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Text(data['happy_reviews'][index]),
                 );
               },
             );
@@ -161,8 +221,26 @@ class NotHappyReviewsScreen extends StatelessWidget {
             return ListView.builder(
               itemCount: data['not_happy_reviews'].length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(data['not_happy_reviews'][index]),
+                return Container(
+                  margin: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.grey[200],
+                    border: Border.all(
+                      color: Colors.black,
+                      width: 2,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Text(data['not_happy_reviews'][index]),
                 );
               },
             );

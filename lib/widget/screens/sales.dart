@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:restaurant_owner_app/widget/PieChartScreen.dart';
 import 'package:restaurant_owner_app/widget/SalesChartScreen.dart';
 import 'package:restaurant_owner_app/widget/TodaySale.dart';
+import 'package:restaurant_owner_app/widget/screens/reviews.dart';
 import '../BestSellerBarChart.dart';
 import 'inventory_page.dart';
 
@@ -46,11 +47,20 @@ class SalesPageState extends State<SalesPage> {
             ),
           ),
           actions: [
-            IconButton(
-              icon: Icon(Icons.notifications, color: Colors.black),
-              onPressed: () {
-                // Add your notification button functionality here
-              },
+            Padding(
+              padding: const EdgeInsets.all(9.0),
+              child: IconButton(
+                icon: Icon(
+                  Icons.reviews_rounded,
+                  color: Colors.white,
+                  size: 35,
+                ),
+                onPressed: () {
+                  // Add your notification button functionality here
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ReviewScreen()));
+                },
+              ),
             ),
           ],
         ),
