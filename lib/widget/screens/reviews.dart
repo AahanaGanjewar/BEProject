@@ -1,4 +1,8 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -25,8 +29,8 @@ class ReviewScreen extends StatefulWidget {
 }
 
 class _ReviewScreenState extends State<ReviewScreen> {
-  double happyPercentage = 0.0;
-  double notHappyPercentage = 0.0;
+  double happyPercentage = 80.0;
+  double notHappyPercentage = 20.0;
 
   Future<void> fetchHappyPercentage() async {
     final response = await http
@@ -56,102 +60,190 @@ class _ReviewScreenState extends State<ReviewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Reviews'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => HappyReviewsScreen()),
-                    );
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.white.withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                    child: Image.asset(
-                      'assets/images/good.png', // Replace with your asset image path
-                      width: 100,
-                      height: 100,
-                    ),
+        backgroundColor: Color.fromARGB(255, 247, 247, 247),
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              color: Colors.deepPurpleAccent,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+              ),
+            ),
+          ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Reviews",
+                style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => NotHappyReviewsScreen()),
-                    );
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.white.withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                    child: Image.asset(
-                      'assets/images/bad.png', // Replace with your asset image path
-                      width: 100,
-                      height: 100,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  'Happy Reviews',
-                  style: TextStyle(fontSize: 20),
-                ),
-                Text(
-                  'Not Happy Reviews',
-                  style: TextStyle(fontSize: 20),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  '${happyPercentage.toStringAsFixed(2)}%',
-                  style: TextStyle(fontSize: 20),
-                ),
-                Text(
-                  '${notHappyPercentage.toStringAsFixed(2)}%',
-                  style: TextStyle(fontSize: 20),
-                ),
-              ],
-            ),
-          ],
+              ),
+              // SizedBox(width: 16), // Add spacing between title and dropdown
+            ],
+          ),
         ),
+        body: SingleChildScrollView(
+          child: Center(
+            child: Row(
+              children: [
+                Expanded(
+                  child: Card(
+                    margin: EdgeInsets.all(16),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: SizedBox(
+                        width: 600, // Adjust width as needed
+                        height: 600, // Adjust height as needed
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ReviewsMenuScreen(),
+                              ),
+                            );
+                          },
+                          child: PieChart(
+                            PieChartData(
+                              sections: [
+                                PieChartSectionData(
+                                  color: Colors.green,
+                                  value: happyPercentage,
+                                  title: 'Satisfied',
+                                  radius: 100,
+                                  titleStyle: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                PieChartSectionData(
+                                  color: Colors.red,
+                                  value: notHappyPercentage,
+                                  title: 'Dissatisfied',
+                                  radius: 100,
+                                  titleStyle: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 200,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  padding: EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Satisfied',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green,
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        '${happyPercentage.toString()}%',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.green[600],
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Dissatisfied',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red,
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        '${notHappyPercentage.toString()}%',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.red[600],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
+}
+
+class ReviewsMenuScreen extends StatefulWidget {
+  @override
+  State<ReviewsMenuScreen> createState() => _ReviewsMenuScreenState();
+}
+
+class _ReviewsMenuScreenState extends State<ReviewsMenuScreen> {
+  int _currentIndex = 0;
+
+  void changeTab(int index) {
+    setState(() => _currentIndex = index);
+  }
+
+  final screens = [
+    HappyReviewsScreen(),
+    NotHappyReviewsScreen(),
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: IndexedStack(
+        index: _currentIndex,
+        children: screens,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        currentIndex: _currentIndex,
+        onTap: (index) => changeTab(index),
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.sentiment_satisfied),
+            label: 'Happy Customers',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.sentiment_dissatisfied),
+            label: 'Not Happy Customers',
+          ),
+        ],
       ),
     );
   }
@@ -162,7 +254,34 @@ class HappyReviewsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Happy Reviews'),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            color: Colors.deepPurpleAccent,
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20),
+            ),
+          ),
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "Happy Reviews",
+              style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            // SizedBox(width: 16), // Add spacing between title and dropdown
+          ],
+        ),
       ),
       body: FutureBuilder<http.Response>(
         future: http.get(Uri.parse('http://127.0.0.1:5000/api/happy_reviews')),
@@ -210,7 +329,34 @@ class NotHappyReviewsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Not Happy Reviews'),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            color: Colors.deepPurpleAccent,
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20),
+            ),
+          ),
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "Not Happy Reviews",
+              style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            // SizedBox(width: 16), // Add spacing between title and dropdown
+          ],
+        ),
       ),
       body: FutureBuilder<http.Response>(
         future:
