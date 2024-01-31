@@ -105,12 +105,7 @@ class _BestSellingProductsBarChartState
               sideTitles: SideTitles(
                 showTitles: true,
 
-                // getTextStyles: (value) => const TextStyle(
-                //   color: Colors.black,
-                //   fontWeight: FontWeight.bold,
-                //   fontSize: 14,
-                // ),
-                // margin: 20,
+               
 
                 getTitlesWidget: (value, meta) {
                   if (value < bestSellingProducts.length) {

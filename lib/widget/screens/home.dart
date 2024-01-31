@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
+import 'package:restaurant_owner_app/widget/screens/salepred.dart';
 import 'inventory_page.dart';
 import 'sales.dart';
 
@@ -23,6 +24,7 @@ class _HomePageState extends State<HomePage> {
   final screens = [
     SalesPage(),
     InventoryPage(),
+    SalePred()
   ];
 
   @override
@@ -55,6 +57,10 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.storage),
             label: 'Inventory',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.attach_money),
+            label: 'Sales',
           ),
         ],
       ),
