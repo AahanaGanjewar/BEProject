@@ -66,89 +66,59 @@ class _InventoryPageState extends State<InventoryPage> {
     });
     print(totalValue);
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(72),
-        child: AppBar(
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              color: Colors.deepPurpleAccent,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
-              ),
-            ),
+      backgroundColor: Color(0xffF3F8FF),
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Color(0xff49108B),
+        elevation: 0,
+        
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+        "Inventory Used",
+        style: GoogleFonts.poppins(
+          textStyle: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
           ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Inventory used",
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              // SizedBox(width: 16), // Add spacing between title and dropdown
-              DropdownButton<String>(
-                value: selectedDate,
-                dropdownColor: Colors.deepPurpleAccent[100],
-                items: availableDates.map((String date) {
-                  return DropdownMenuItem<String>(
-                    value: date,
-                    child: Text(
-                      date,
-                      style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+        ),
+      ),
+            // SizedBox(width: 16), // Add spacing between title and dropdown
+            DropdownButton<String>(
+              value: selectedDate,
+              dropdownColor: Colors.deepPurpleAccent[100],
+              items: availableDates.map((String date) {
+                return DropdownMenuItem<String>(
+                  value: date,
+                  child: Text(
+                    date,
+                    style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
-                  );
-                }).toList(),
-                onChanged: (String? newValue) {
-                  if (newValue != null) {
-                    setState(() {
-                      selectedDate = newValue;
-                      _loadInventoryData(selectedDate);
-                    });
-                  }
-                },
-              ),
-            ],
-          ),
+                  ),
+                );
+              }).toList(),
+              onChanged: (String? newValue) {
+                if (newValue != null) {
+                  setState(() {
+                    selectedDate = newValue;
+                    _loadInventoryData(selectedDate);
+                  });
+                }
+              },
+            ),
+          ],
         ),
       ),
       body: Center(
         child: Column(
           children: <Widget>[
-            // Container(
-            //   // margin: EdgeInsets.all(16),
-            //   child: Card(
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(15.0),
-            //     ),
-            //     elevation: 5,
-            //     child: Padding(
-            //       padding: const EdgeInsets.all(16.0),
-            //       child: Text(
-            //         'Total Unit: ${totalValue.toStringAsFixed(2)}',
-            //         style: TextStyle(
-            //           fontSize: 20,
-            //           fontWeight: FontWeight.bold,
-            //           color: Colors.deepPurple,
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
             Expanded(
               child: inventoryData.isEmpty
                   ? Text("No inventory data available for $selectedDate")
@@ -163,7 +133,7 @@ class _InventoryPageState extends State<InventoryPage> {
 
                         return Container(
                           padding: EdgeInsets.all(8),
-                          height: 150, // Set the height as per your preference
+                          height: 120, // Set the height as per your preference
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Card(
@@ -173,7 +143,7 @@ class _InventoryPageState extends State<InventoryPage> {
                                 borderRadius: BorderRadius.circular(10),
                                 side: BorderSide(
                                   // color: Colors.blue.shade200,
-                                  color: Colors.white,
+                                  color: Colors.grey.shade50,
                                   width: 2,
                                 ),
                               ),
@@ -189,7 +159,7 @@ class _InventoryPageState extends State<InventoryPage> {
                                         textStyle: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.black,
+                                          color: Color(0xff7E30E1),
                                         ),
                                       ),
                                     ),

@@ -9,8 +9,8 @@ class TodaysSaleComparisonScreen extends StatefulWidget {
 
 class _TodaysSaleComparisonScreenState
     extends State<TodaysSaleComparisonScreen> {
-  late int todaySale;
-  late int lastWeekdaySale;
+  late int todaySale = 0;
+  late int lastWeekdaySale = 0;
 
   @override
   void initState() {
@@ -66,9 +66,7 @@ class _TodaysSaleComparisonScreenState
     bool isGrowth = todaySale > lastWeekdaySale;
 
     return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
-      ),
+     
       color: isGrowth ? Colors.white : Colors.white,
       child: Padding(
         padding: const EdgeInsets.all(16.0),

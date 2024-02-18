@@ -3,6 +3,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -60,20 +61,12 @@ class _ReviewScreenState extends State<ReviewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 247, 247, 247),
+        backgroundColor: Color(0xffF3F8FF),
         appBar: AppBar(
           centerTitle: true,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Color(0xff49108B),
           elevation: 0,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              color: Colors.deepPurpleAccent,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
-              ),
-            ),
-          ),
+          
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -213,39 +206,74 @@ class ReviewsMenuScreen extends StatefulWidget {
 }
 
 class _ReviewsMenuScreenState extends State<ReviewsMenuScreen> {
-  int _currentIndex = 0;
+  int _selectedIndex = 0;
 
-  void changeTab(int index) {
-    setState(() => _currentIndex = index);
-  }
+  // void changeTab(int index) {
+  //   setState(() => _currentIndex = index);
+  // }
 
-  final screens = [
+  final _screens = [
     HappyReviewsScreen(),
     NotHappyReviewsScreen(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: _currentIndex,
-        children: screens,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        currentIndex: _currentIndex,
-        onTap: (index) => changeTab(index),
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.sentiment_satisfied),
-            label: 'Happy Customers',
+    backgroundColor: Color(0xffF3F8FF),
+    bottomNavigationBar: Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 20,
+              color: Colors.black.withOpacity(.1),
+            ),
+          ],
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+            child: GNav(
+              rippleColor: Colors.grey[300]!,
+              hoverColor: Colors.grey[100]!,
+              gap: 8,
+              activeColor: Colors.white,
+              iconSize: 24,
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              duration: Duration(milliseconds: 400),
+              tabBackgroundColor: Color(0xff49108B),
+              color: Color(0xff7E30E1),
+              tabs: [
+                GButton(
+                  icon: Icons.sentiment_satisfied,
+                  text: 'Satisfied',
+                ),
+                GButton(
+                  icon: Icons.sentiment_dissatisfied,
+                  text: 'Not Satisfied',
+                ),
+                
+                
+              ],
+              selectedIndex: _selectedIndex,
+              onTabChange: (index) {
+                setState(() {
+                  _selectedIndex = index;
+                  print(_selectedIndex);
+                });
+              },
+            ),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.sentiment_dissatisfied),
-            label: 'Not Happy Customers',
-          ),
-        ],
+        ),
       ),
-    );
+    ),
+    body: 
+     _selectedIndex < _screens.length ? _screens[_selectedIndex] : Container(),
+
+  );
   }
 }
 
@@ -255,11 +283,11 @@ class HappyReviewsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color(0xff49108B),
         elevation: 0,
         flexibleSpace: Container(
           decoration: BoxDecoration(
-            color: Colors.deepPurpleAccent,
+            color: Color(0xff49108B),
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(20),
@@ -330,17 +358,9 @@ class NotHappyReviewsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color(0xff49108B),
         elevation: 0,
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            color: Colors.deepPurpleAccent,
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
-            ),
-          ),
-        ),
+        
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

@@ -62,24 +62,16 @@ class _BestSellingProductsBarChartState
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50), // Adjust the height as needed
         child: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Color(0xff7E30E1),
           elevation: 0,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
-              ),
-            ),
-          ),
+          centerTitle: true,
           title: Text(
             "Best Sellers",
             style: GoogleFonts.poppins(
               textStyle: TextStyle(
                 fontSize: 24,
-                fontWeight: FontWeight.bold,
-                // color: Colors.black,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
               ),
             ),
           ),
@@ -104,20 +96,12 @@ class _BestSellingProductsBarChartState
             bottomTitles: AxisTitles(
               sideTitles: SideTitles(
                 showTitles: true,
-
-               
-
                 getTitlesWidget: (value, meta) {
                   if (value < bestSellingProducts.length) {
-                    final words =
-                        bestSellingProducts[value.toInt()].key.split(' ');
-                    return Text(words.join('\n'));
+                    return Text(bestSellingProducts[value.toInt()].key, style: GoogleFonts.poppins(color: Color(0xff49108B), fontWeight: FontWeight.bold),);
                   }
                   return Text('');
                 },
-                // getTitlesWidget: (double value, meta) {
-                //   return Text(bestSellingProducts[value.toInt()].key);
-                // },
               ),
             ),
             rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
@@ -125,11 +109,6 @@ class _BestSellingProductsBarChartState
             leftTitles: AxisTitles(
               sideTitles: SideTitles(
                 showTitles: false,
-                // getTextStyles: (value) => const TextStyle(
-                //   color: Colors.black,
-                //   fontWeight: FontWeight.bold,
-                //   fontSize: 14,
-                // ),
                 getTitlesWidget: (value, meta) {
                   return Text(value.toInt().toString());
                 },
@@ -142,8 +121,8 @@ class _BestSellingProductsBarChartState
             barRods: [
               BarChartRodData(
                 toY: bestSellingProducts[index].value.toDouble(),
-                color: Colors.blue,
-                width: 30,
+                color: Color(0xffE26EE5),
+                width: 20,
               ),
             ],
             showingTooltipIndicators: [0],

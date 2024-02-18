@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -46,28 +48,18 @@ class _SalesChartScreenState extends State<SalesChartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50), // Adjust the height as needed
-        child: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
-              ),
-            ),
-          ),
-          title: Text(
-            "Monthly Graph",
-            style: GoogleFonts.poppins(
-              textStyle: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+      appBar: AppBar(
+         backgroundColor: Color(0xff7E30E1),
+        elevation: 0,
+        centerTitle: true,
+        
+        title: Text(
+          "Monthly Sales",
+          style: GoogleFonts.poppins(
+            textStyle: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
             ),
           ),
         ),
@@ -98,14 +90,14 @@ class _SalesChartScreenState extends State<SalesChartScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
-                icon: Icon(Icons.arrow_back),
+                icon: Icon(Icons.arrow_back, color: Colors.purple,),
                 onPressed: () {
                   _changeMonth(-1); // Go to previous month
                   _fetchSalesData();
                 },
               ),
               IconButton(
-                icon: Icon(Icons.arrow_forward),
+                icon: Icon(Icons.arrow_forward, color: Colors.purple,),
                 onPressed: () {
                   _changeMonth(1); // Go to next month
                   _fetchSalesData();
@@ -129,9 +121,10 @@ class _SalesChartScreenState extends State<SalesChartScreen> {
           date.year == selectedMonth.year;
     }).toList();
     return Container(
-      height: 600,
+      height: 1000,
       child: LineChart(
         LineChartData(
+          backgroundColor: Colors.white,
           gridData: FlGridData(show: false),
           borderData: FlBorderData(
             show: true,
@@ -178,7 +171,7 @@ class _SalesChartScreenState extends State<SalesChartScreen> {
                 return FlSpot(entry.key.toDouble(), entry.value.amount);
               }).toList(),
               isCurved: true,
-              color: Colors.blue,
+              color: Color(0xffE26EE5),
             ),
           ],
           // Configure other chart properties as needed

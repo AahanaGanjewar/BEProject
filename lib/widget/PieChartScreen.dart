@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 class PieChartScreen extends StatefulWidget {
@@ -67,9 +68,24 @@ class _PieChartScreenState extends State<PieChartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pie Chart'),
+        backgroundColor: Color(0xff7E30E1),
+        elevation: 0,
+        centerTitle: true,
+        
+        title: Text(
+          "Pie Chart",
+          style: GoogleFonts.poppins(
+            textStyle: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+            ),
+          ),
+        ),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           DropdownButton<String>(
             value: dropdownValue,
@@ -100,7 +116,9 @@ class _PieChartScreenState extends State<PieChartScreen> {
                   child: AspectRatio(
                     aspectRatio: 1,
                     child: PieChart(
+                    
                       PieChartData(
+                      
                         sections: getSections(),
                         sectionsSpace: 0,
                         centerSpaceRadius: 50,
@@ -146,8 +164,8 @@ class _PieChartScreenState extends State<PieChartScreen> {
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: PieChartScreen(),
-  ));
-}
+// void main() {
+//   runApp(MaterialApp(
+//     home: PieChartScreen(),
+//   ));
+// }

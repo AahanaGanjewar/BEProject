@@ -19,36 +19,25 @@ class _SalePredState extends State<SalePred> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(72),
-        child: AppBar(
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              color: Colors.deepPurpleAccent,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
-              ),
-            ),
-          ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Sales Prediction",
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
+      backgroundColor: Color(0xffF3F8FF),
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Color(0xff49108B),
+        elevation: 0,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "Sales Prediction",
+              style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
       body: FutureBuilder<http.Response>(
@@ -78,14 +67,6 @@ class _SalePredState extends State<SalePred> {
                             bottomTitles: AxisTitles(
                                 sideTitles: SideTitles(
                               showTitles: true,
-                              //               getTitlesWidget: (value, meta) {
-                              //   if (value < bestSellingProducts.length) {
-                              //     final words =
-                              //         bestSellingProducts[value.toInt()].key.split(' ');
-                              //     return Text(words.join('\n'));
-                              //   }
-                              //   return Text('');
-                              // },
                             )),
                             leftTitles: AxisTitles(
                               sideTitles: SideTitles(
@@ -155,7 +136,7 @@ class _SalePredState extends State<SalePred> {
         barRods: [
           BarChartRodData(
             toY: weeklySalesList[index]['prediction'].toDouble(),
-            color: Colors.blue,
+            color: Color(0xffE26EE5),
           ),
         ],
       );

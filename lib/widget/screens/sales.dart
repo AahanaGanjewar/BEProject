@@ -22,51 +22,42 @@ class SalesPageState extends State<SalesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50), // Adjust the height as needed
-        child: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
-              ),
+      backgroundColor: Color(0xffF3F8FF),
+      appBar: AppBar(
+        backgroundColor: Color(0xff49108B),
+        elevation: 0,
+        centerTitle: true,
+        
+        title: Text(
+          "City Sales",
+          style: GoogleFonts.poppins(
+            textStyle: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
             ),
           ),
-          title: Text(
-            "City Sales",
-            style: GoogleFonts.poppins(
-              textStyle: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.all(9.0),
-              child: IconButton(
-                icon: Icon(
-                  Icons.reviews_rounded,
-                  color: Colors.white,
-                  size: 35,
-                ),
-                onPressed: () {
-                  // Add your notification button functionality here
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ReviewScreen()));
-                },
-              ),
-            ),
-          ],
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: IconButton(
+              icon: Icon(
+                Icons.sms,
+                color: Color(0xffF3F8FF),
+                size: 35,
+              ),
+              onPressed: () {
+                // Add your notification button functionality here
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ReviewScreen()));
+              },
+            ),
+          ),
+        ],
       ),
       body: Container(
-        decoration: BoxDecoration(color: Colors.white),
+        decoration: BoxDecoration(color: Color(0xffF3F8FF)),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -76,7 +67,7 @@ class SalesPageState extends State<SalesPage> {
                   borderRadius: BorderRadius.circular(10),
                   // ignore: prefer_const_constructors
                   side: BorderSide(
-                    color: Colors.blue,
+                    color: Color(0xff49108B),
                     width: 2,
                   ),
                 ),
@@ -89,17 +80,25 @@ class SalesPageState extends State<SalesPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  height: 800,
+                  height: 700,
                   child: Card(
                     elevation: 5,
-                    // shape: RoundedRectangleBorder(
-                    //   borderRadius: BorderRadius.circular(10),
-                    //   side: BorderSide(
-                    //     color: Colors.green,
-                    //     width: 2,
-                    //   ),
-                    // ),
+              
                     child: Center(child: SalesChartScreen()),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  height: 700,
+                  child: Card(
+                    elevation: 5,
+                   
+                    child: Center(child: BestSellingProductsBarChart()),
                   ),
                 ),
               ),
@@ -114,31 +113,9 @@ class SalesPageState extends State<SalesPage> {
                     elevation: 5,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
-                      // side: BorderSide(
-                      //   color: Colors.green,
-                      //   width: 2,
-                      // ),
                     ),
-                    child: Center(child: BestSellingProductsBarChart()),
-                    // child: Padding(
-                    //   padding: const EdgeInsets.fromLTRB(0, 0, 0, 50),
-
-                    // ),
+                    child: Center(child: PieChartScreen()),
                   ),
-                ),
-              ),
-              Container(
-                height: 700,
-                child: Card(
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    side: BorderSide(
-                      color: Colors.orange,
-                      width: 2,
-                    ),
-                  ),
-                  child: Center(child: PieChartScreen()),
                 ),
               ),
             ],
