@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:restaurant_owner_app/widget/screens/arima.dart';
 import 'package:restaurant_owner_app/widget/screens/salepred.dart';
 import 'inventory_page.dart';
 import 'sales.dart';
@@ -26,7 +27,8 @@ class _HomePageState extends State<HomePage> {
   final _screens = [
     SalesPage(),
     InventoryPage(),
-    SalePred()
+    SalePred(),
+    ArimaPage()
   ];
 
    @override
@@ -71,6 +73,10 @@ Widget build(BuildContext context) {
                 GButton(
                   icon: Icons.price_change,
                   text: 'Sales',
+                ),
+                GButton(
+                  icon: Icons.model_training,
+                  text: 'ARIMA',
                 ),
                 
               ],
