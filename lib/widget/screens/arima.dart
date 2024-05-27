@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import 'package:google_fonts/google_fonts.dart';
 
 class ArimaPage extends StatefulWidget {
@@ -10,6 +11,26 @@ class ArimaPage extends StatefulWidget {
 }
 
 class ArimaPageState extends State<ArimaPage> {
+  List<dynamic> forecastData = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    final response =
+        await http.get(Uri.parse('http://127.0.0.1:5000/api/forecast'));
+    if (response.statusCode == 200) {
+      setState(() {
+        forecastData = json.decode(response.body);
+      });
+    } else {
+      throw Exception('Failed to load forecast data');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +40,7 @@ class ArimaPageState extends State<ArimaPage> {
         backgroundColor: Color(0xff49108B),
         elevation: 0,
         title: Text(
-          "ARIMA",
+          "Inventory Forecast",
           style: GoogleFonts.poppins(
             textStyle: TextStyle(
               fontSize: 24,
@@ -31,6 +52,17 @@ class ArimaPageState extends State<ArimaPage> {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
+          String predictionString = forecastData[index]['Predicted Consumption'].toString();
+    
+    double predictionValue;
+    try {
+      predictionValue = double.parse(predictionString);
+    } catch (e) {
+      // Handle the error, for example, set a default value or log a message
+      predictionValue = 0.0;
+    }
+
+    int roundedValue = predictionValue.ceil();
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Container(
@@ -38,10 +70,8 @@ class ArimaPageState extends State<ArimaPage> {
               child: Card(
                 elevation: 5,
                 shape: RoundedRectangleBorder(
-                
                   borderRadius: BorderRadius.circular(10),
                   side: BorderSide(
-                    // color: Colors.blue.shade200,
                     color: Colors.grey.shade50,
                     width: 2,
                   ),
@@ -49,29 +79,33 @@ class ArimaPageState extends State<ArimaPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text("Product",
-                        style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xff7E30E1),
-                          ),
-                        )),
-                    Text("data",
-                        style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xff7E30E1),
-                          ),
-                        ))
+                    Text(
+                      forecastData[index]['Item'],
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xff7E30E1),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      roundedValue.toString()+" unit",
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xff7E30E1),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
             ),
           );
         },
-        itemCount: 10,
+        itemCount: forecastData.length,
       ),
     );
   }

@@ -76,7 +76,7 @@ Widget build(BuildContext context) {
                 ),
                 GButton(
                   icon: Icons.model_training,
-                  text: 'ARIMA',
+                  text: 'Inventory Forecast',
                 ),
                 
               ],

@@ -5,6 +5,7 @@ import 'package:restaurant_owner_app/widget/PieChartScreen.dart';
 import 'package:restaurant_owner_app/widget/SalesChartScreen.dart';
 import 'package:restaurant_owner_app/widget/TodaySale.dart';
 import 'package:restaurant_owner_app/widget/screens/home.dart';
+import 'package:restaurant_owner_app/widget/screens/reviews.dart';
 import 'package:restaurant_owner_app/widget/screens/sales.dart';
 
 import 'firebase_options.dart';
